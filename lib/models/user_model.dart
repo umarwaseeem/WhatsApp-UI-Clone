@@ -36,7 +36,7 @@ class UserModel {
       isOnline: map['isOnline'] as bool,
       profilePicture: map['profilePicture'] as String,
       groupId: List<String>.from(
-        (map['groupId'] as List<String>),
+        (map['groupId'] ),
       ),
     );
   }
