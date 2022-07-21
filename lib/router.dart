@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'common/widgets/error.dart';
 import 'features/authentication/screens/login_screen.dart';
 import 'features/authentication/screens/otp_screen.dart';
+import 'features/authentication/screens/user_info_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -16,6 +17,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         builder: (context) => OTPScreen(
           verificationId: verificationId,
         ),
+      );
+    case UserInfoScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const UserInfoScreen(),
       );
     default: // - incase error in making screen, display an error screen
       return MaterialPageRoute(
