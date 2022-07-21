@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:whatsapp_clone/colors.dart';
-import 'package:whatsapp_clone/screens/mobile.dart';
-import 'package:whatsapp_clone/screens/web.dart';
-import 'package:whatsapp_clone/widgets/res.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:whatsapp_clone/router.dart';
+import 'features/landing/screens/main_screen.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -19,11 +26,13 @@ class MyApp extends StatelessWidget {
       title: 'Whatsapp Clone',
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
+        appBarTheme: const AppBarTheme(
+          color: backgroundColor,
+          elevation: 0,
+        ),
       ),
-      home: const ResponsiveLayout(
-        mobile: MobileScreen(),
-        web: WebScreen(),
-      ),
+      home: const MainScreen(),
+      onGenerateRoute: (settings) => generateRoute(settings),
     );
   }
 }
