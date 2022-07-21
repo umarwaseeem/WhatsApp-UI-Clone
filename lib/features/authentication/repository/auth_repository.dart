@@ -99,6 +99,7 @@ class AuthRepository {
 
       fireStore.collection("users").doc(userId).set(user.toMap());
 
+      // ignore: use_build_context_synchronously
       Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(builder: (context) => const MobileScreen()),
