@@ -2,9 +2,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone/features/authentication/screens/otp_screen.dart';
-
 import '../../../../common/util/util.dart';
+
+final authRepositoryProvider = Provider(
+  (ref) => AuthRepository(
+    auth: FirebaseAuth.instance,
+    fireStore: FirebaseFirestore.instance,
+  ),
+);
 
 class AuthRepository {
   final FirebaseAuth auth;
@@ -13,10 +20,7 @@ class AuthRepository {
   AuthRepository({
     required this.auth,
     required this.fireStore,
-  }) {
-    // TODO: implement 
-    throw UnimplementedError();
-  }
+  });
 
   void signInWithPhone(BuildContext context, String phoneNumber) async {
     try {

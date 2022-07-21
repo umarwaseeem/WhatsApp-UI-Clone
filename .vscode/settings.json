@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "appbar",
-        "Firestore"
+        "Firestore",
+        "riverpod"
     ]
 }

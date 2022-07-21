@@ -17,7 +17,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           verificationId: verificationId,
         ),
       );
-    default: // - incase error in making scree, display an error screen
+    default: // - incase error in making screen, display an error screen
       return MaterialPageRoute(
         builder: (context) => const Scaffold(
           body: ErrorScreen(

@@ -13,8 +13,8 @@ class OTPScreen extends StatefulWidget {
 class _OTPScreenState extends State<OTPScreen> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: const Text("OTP Screen"),
+    return const SizedBox(
+      child: Text("OTP Screen"),
     );
   }
 }
