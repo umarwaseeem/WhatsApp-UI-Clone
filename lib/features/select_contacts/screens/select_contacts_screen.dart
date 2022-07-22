@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone/colors.dart';
 import 'package:whatsapp_clone/common/widgets/error.dart';
@@ -10,6 +11,10 @@ class SelectContactScreen extends ConsumerWidget {
   const SelectContactScreen({Key? key}) : super(key: key);
 
   static const String routeName = "select contact screen";
+
+  void selectContact(WidgetRef ref, Contact contact, BuildContext context) {
+    ref.read(selectContactControllerProvider).selectContact(contact, context);
+  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,21 +32,26 @@ class SelectContactScreen extends ConsumerWidget {
           return ListView.builder(
             itemCount: contactList.length,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 8.0),
-                child: ListTile(
-                  leading: contactList[index].photo == null
-                      ? null
-                      : CircleAvatar(
-                          radius: 30,
-                          backgroundImage:
-                              MemoryImage(contactList[index].photo!),
-                        ),
-                  title: Text(
-                    contactList[index].displayName,
-                    style: const TextStyle(fontSize: 18),
+              return InkWell(
+                onTap: () {
+                  selectContact(ref, contactList[index], context);
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(bottom: 8.0),
+                  child: ListTile(
+                    leading: contactList[index].photo == null
+                        ? null
+                        : CircleAvatar(
+                            radius: 30,
+                            backgroundImage:
+                                MemoryImage(contactList[index].photo!),
+                          ),
+                    title: Text(
+                      contactList[index].displayName,
+                      style: const TextStyle(fontSize: 18),
+                    ),
+                    // subtitle: Text(contactList[index].),
                   ),
-                  // subtitle: Text(contactList[index].),
                 ),
               );
             },

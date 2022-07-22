@@ -7,6 +7,8 @@ class MobileChat extends StatelessWidget {
 
   final String name;
 
+  static const routeName = "mobile chat screen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
