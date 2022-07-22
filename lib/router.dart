@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_clone/features/select_contacts/screens/select_contacts_screen.dart';
 
 import 'common/widgets/error.dart';
 import 'features/authentication/screens/login_screen.dart';
@@ -21,6 +22,10 @@ Route<dynamic> generateRoute(RouteSettings settings) {
     case UserInfoScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const UserInfoScreen(),
+      );
+    case SelectContactScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const SelectContactScreen(),
       );
     default: // - incase error in making screen, display an error screen
       return MaterialPageRoute(
