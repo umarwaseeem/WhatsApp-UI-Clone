@@ -31,6 +31,9 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
             receiverUserId: widget.receiverUserId,
           );
     }
+    setState(() {
+      _messageController.clear();
+    });
   }
 
   @override
@@ -46,6 +49,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
       children: [
         Expanded(
           child: TextFormField(
+            controller: _messageController,
             onChanged: (value) {
               if (value.isNotEmpty) {
                 setState(() {
@@ -124,11 +128,11 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
           child: CircleAvatar(
             radius: 20,
             backgroundColor: messageColor,
-            child: GestureDetector(
-              onTap: () {
+            child: IconButton(
+              onPressed: () {
                 sendTextMessage();
               },
-              child: Icon(isShowSendButton ? Icons.send : Icons.mic,
+              icon: Icon(isShowSendButton ? Icons.send : Icons.mic,
                   color: Colors.white),
             ),
           ),
