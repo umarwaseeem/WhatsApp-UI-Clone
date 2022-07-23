@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp_clone/widgets/mobile_chat.dart';
+import 'package:whatsapp_clone/features/chat/screens/mobile_chat.dart';
 
 import '../../../common/util/util.dart';
 import '../../../models/user_model.dart';
@@ -44,7 +44,10 @@ class SelectContactRepository {
         if (userData.phoneNumber == selectedNumber) {
           isFound = true;
           // ignore: use_build_context_synchronously
-          Navigator.pushNamed(context, MobileChat.routeName , arguments: userData.name);
+          Navigator.pushNamed(context, MobileChat.routeName, arguments: {
+            "name": userData.name,
+            "id": userData.uId,
+          });
           break;
         }
 

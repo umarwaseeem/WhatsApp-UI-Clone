@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp_clone/features/select_contacts/screens/select_contacts_screen.dart';
-import 'package:whatsapp_clone/widgets/mobile_chat.dart';
+import 'package:whatsapp_clone/features/chat/screens/mobile_chat.dart';
 
 import 'common/widgets/error.dart';
 import 'features/authentication/screens/login_screen.dart';
@@ -13,6 +13,8 @@ Route<dynamic> generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const LoginScreen(),
       );
+    // - /////////////////////////////
+
     case OTPScreen.routeName:
       final verificationId = settings.arguments as String;
       return MaterialPageRoute(
@@ -20,19 +22,31 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           verificationId: verificationId,
         ),
       );
+    // - /////////////////////////////
+
     case UserInfoScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const UserInfoScreen(),
       );
+    // - /////////////////////////////
+
     case SelectContactScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const SelectContactScreen(),
       );
+    // - /////////////////////////////
+
     case MobileChat.routeName:
-      final userName = settings.arguments as String;
+      final arguments = settings.arguments
+          as Map<String, dynamic>; // arguments from selectContactScreen
       return MaterialPageRoute(
-        builder: (context) => MobileChat(name: userName),
+        builder: (context) => MobileChat(
+          name: arguments['name'],
+          id: arguments['id'],
+        ),
       );
+    // - /////////////////////////////
+
     default: // - incase error in making screen, display an error screen
       return MaterialPageRoute(
         builder: (context) => const Scaffold(
@@ -41,5 +55,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           ),
         ),
       );
+    // - /////////////////////////////
+
   }
 }

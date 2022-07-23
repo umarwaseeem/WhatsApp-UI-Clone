@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:whatsapp_clone/widgets/mobile_chat.dart';
+import 'package:whatsapp_clone/features/chat/screens/mobile_chat.dart';
 
 import '../colors.dart';
 import 'dummy.dart';
@@ -23,6 +23,7 @@ class Contacts extends StatelessWidget {
                     MaterialPageRoute(
                       builder: (context) => MobileChat(
                         name: info[index]["name"].toString(),
+                        id: info[index]["id"].toString(),
                       ),
                     ),
                   );
